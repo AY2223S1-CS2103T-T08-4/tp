@@ -6,19 +6,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import seedu.address.commons.exceptions.IllegalValueException;
-
-import seedu.address.commons.util.JsonUtil;
-
-import seedu.address.model.AddressBook;
-
-import seedu.address.testutil.TypicalPersons;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import org.junit.jupiter.api.Test;
 
-
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.AddressBook;
+import seedu.address.testutil.TypicalPersons;
 
 public class JsonSerializableAddressBookTest {
 
