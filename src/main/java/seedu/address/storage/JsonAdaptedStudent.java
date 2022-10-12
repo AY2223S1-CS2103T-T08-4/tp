@@ -2,9 +2,16 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
+
 import seedu.address.model.person.Address;
-import seedu.address.model.student.*;
+import seedu.address.model.student.Attendance;
+import seedu.address.model.student.Response;
+import seedu.address.model.student.StuEmail;
+import seedu.address.model.student.StuName;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.Telegram;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -52,7 +59,8 @@ public class JsonAdaptedStudent {
     public Student toModelType() throws IllegalValueException {
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StuName.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, StuName.class.getSimpleName()));
         }
         if (!StuName.isValidStuName(name)) {
             throw new IllegalValueException(StuName.MESSAGE_CONSTRAINTS);
@@ -60,7 +68,8 @@ public class JsonAdaptedStudent {
         final StuName modelName = new StuName(name);
 
         if (telegram == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Telegram.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Telegram.class.getSimpleName()));
         }
         if (!Telegram.isValidTelegram(telegram)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
@@ -68,7 +77,8 @@ public class JsonAdaptedStudent {
         final Telegram modelTelegram = new Telegram(telegram);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StuEmail.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, StuEmail.class.getSimpleName()));
         }
         if (!StuEmail.isValidEmail(email)) {
             throw new IllegalValueException(StuEmail.MESSAGE_CONSTRAINTS);
@@ -76,7 +86,8 @@ public class JsonAdaptedStudent {
         final StuEmail modelEmail = new StuEmail(email);
 
         if (response == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Response.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Response.class.getSimpleName()));
         }
         if (!Response.isValidResponse(response)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
@@ -84,7 +95,8 @@ public class JsonAdaptedStudent {
         final Response modelResponse = new Response(response);
 
         if (attendance == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName()));
         }
         if (!Attendance.isValidAttendance(attendance)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
