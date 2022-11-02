@@ -6,9 +6,9 @@ title: SETA
 User Guide
 =======
 SETA is a **desktop application for CS2103T Teaching Assistants** to track their students’ and tutorials’ details, and
-questions asked by students. SETA is optimized for use via a Command Line Interface (CLI) while still having the benefits of a
-Graphical User Interface (GUI). If you can type fast, SETA enables you to track your students. manage your tutorials and 
-note down questions more effectively than traditional GUI apps.
+questions asked by students. SETA is optimized for use via a Command Line Interface (CLI) while still having the
+benefits of a Graphical User Interface (GUI). If you can type fast, SETA enables you to track your students. manage your
+tutorials and note down questions more effectively than traditional GUI apps.
 
 * Table of Contents
     * **[Quick Start](#quick-start)**
@@ -32,7 +32,7 @@ note down questions more effectively than traditional GUI apps.
           * Adding a tutorial: [`addtut`](#adding-a-tutorial-addtut)
           * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial-deletetut)
           * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
-          * **Clear**: [`clear`](#clearing-all-entries-clear)
+      * **Clear**: [`clear`](#clearing-all-entries-clear)
       * **Exiting the program**: [`exit`](#exiting-the-program-exit)
     * **[FAQ](#faq)**
     * **[Command Summary](#command-summary)**
@@ -56,8 +56,8 @@ note down questions more effectively than traditional GUI apps.
 
 Some example commands you can try:
 
-* **`addstu`**`n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com` : Adds a student named `John Lim Jun Jie` to
-  the student list.
+* **`addstu`**`n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com` : Adds a student named `John Lim Jun Jie` to the
+  student list.
 
 * **`deletestu`**`3` : Deletes the 3rd student shown in the current list.
 
@@ -99,14 +99,14 @@ Adds a student to the student list.
 
 Format: `addstu n/NAME h/TELEGRAM_HANDLE e/EMAIL`
 
-* Telegram handle must start with a '@'.
+* Telegram handle must start with a '@', followed by an alphanumeric character.
+* After the first character, telegram handle can only contain alphanumeric character or underscore.
 * Email can only contain alphanumeric characters.
 
 Examples:
 
 * `addstu n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com`
 * `addstu n/Mary Tan Xiao Li h/@marytxl e/marytxl@example.com`
-
 
 ### Editing a student: `editstu`
 
@@ -115,13 +115,15 @@ Edits an existing student in the student list.
 Format: `editstu INDEX [n/NAME] [h/TELEGRAM_HANDLE] [e/EMAIL] [a/ATTENDANCE]`
 
 * Edits the student at the specified INDEX. The index represents the index number of the student in the student list.
-  The index must be a positive integer 0, 1, 2…
+  The index must be a positive integer 1, 2…
 * At least one of the fields (E.g. [n/NAME] or [e/EMAIL]) must be provided.
 * Existing fields will be updated to the input values.
+* Input attendance value without any extra '0's before and after the intended attendance value. (E.g. '0' instead of '0000' and '3' instead of '003').
 
 Examples:
 
-* `editstu 1 h/@johnlim e/jljj@example.com` Edits the telegram handle and email of the 1st student to @johnlim and jljj@example.com respectively.
+* `editstu 1 h/@johnlim e/jljj@example.com` Edits the telegram handle and email of the 1st student to @johnlim and
+  jljj@example.com respectively.
 * `editstu 3 n/Mary Lee Jing Yi` Edits the name of the 3rd student to Mary Lee Jing Yi.
 * `editstu 2 a/5` Edits the attendance number of the 2nd student to 5.
 
@@ -150,7 +152,7 @@ Format: `addresponse INDEX m/MESSAGE_COUNT`
   * If `addresponse 1 m/7` is keyed in after `addresponse 1 m/2`, the response count for the first
     student in the student list will be 7 instead of 2.
 * The `INDEX` refers to the index number shown in the displayed student list.
-* The `INDEX` must be a positive integer 1, 2, 3, ... 
+* The `INDEX` must be a positive integer 1, 2, 3, ...
 * The `MESSAGE_COUNT` must be a positive integer 1, 2, 3, ...
 * If `m\0000000000` is given as an input, 0s will not be truncated and response will be displayed as
 `response: 000000000`
@@ -186,7 +188,7 @@ Format: `unhelpstu INDEX`
 Example:
 
 * `unhelpstu 2`
-* 
+
 ### Deleting a student: `deletestu`
 
 Removes a specific student.
@@ -227,7 +229,7 @@ Example:
 
 ### <ins>Questions</ins>
 
-### Adding a question  `addq`
+### Adding a question: `addq`
 
 Adds a question to the question list.
 
@@ -246,7 +248,7 @@ Format: `markq INDEX`
 * Marks the question at the specified INDEX as important.
 * The index refers to the index number shown in the displayed question list.
 * The index must be a positive integer 1, 2, 3, ...
-* The index must be within the number of questions in the  question list. E.g. There are 4 questions. The possible 
+* The index must be within the number of questions in the question list. E.g. There are 4 questions. The possible
   indexes are 1, 2, 3 and 4.
 
 Example:
@@ -263,7 +265,7 @@ Format: `unmarkq INDEX`
 * Marks the question at the specified INDEX as unimportant.
 * The index refers to the index number shown in the displayed question list.
 * The index must be a positive integer 1, 2, 3, ...
-* The index must be within the number of questions in the  question list. E.g. There are 4 questions. The possible
+* The index must be within the number of questions in the question list. E.g. There are 4 questions. The possible
   indexes are 1, 2, 3 and 4.
 
 Example:
@@ -276,9 +278,10 @@ Example:
 Deletes a question in the question list.
 
 Format: `deleteq INDEX`
+
 * The index refers to the index number shown in the displayed question list.
 * The index must be a positive integer 1, 2, 3, ...
-* The index must be within the number of questions in the  question list. E.g. There are 4 questions. The possible
+* The index must be within the number of questions in the question list. E.g. There are 4 questions. The possible
   indexes are 1, 2, 3 and 4.
 
 Example:
@@ -395,8 +398,8 @@ the data of your previous SETA home folder.
 | **Attendance** | `attendance`, `addresponse`                |
 | **Delete**     | `deletestu`, `deleteq`, `deletetut`        |
 | **Edit**       | `editstu`                                  |
-| **Find**       | `findstu`                                  |  
-| **List**       | `liststu`                                  |  
+| **Find**       | `findstu`                                  |
+| **List**       | `liststu`                                  |
 | **Mark**       | `markq`, `unmarkq`, `marktut`, `unmarktut` |
 | **Tag**        | `helpstu`, `unhelpstu`                     |
 | **Clear**      | `clear`                                    |
