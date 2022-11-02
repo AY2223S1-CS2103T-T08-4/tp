@@ -21,10 +21,15 @@ import seedu.address.logic.commands.DeleteTutorialCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditStuCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindStuCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.HelpStuCommand;
+import seedu.address.logic.commands.ListStuCommand;
+import seedu.address.logic.commands.MarkQCommand;
 import seedu.address.logic.commands.MarkTutorialCommand;
+import seedu.address.logic.commands.UnhelpStuCommand;
+import seedu.address.logic.commands.UnmarkQCommand;
+import seedu.address.logic.commands.UnmarkTutorialCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -81,11 +86,11 @@ public class AddressBookParser {
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case FindStuCommand.COMMAND_WORD:
+            return new FindStuCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListStuCommand.COMMAND_WORD:
+            return new ListStuCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -99,14 +104,29 @@ public class AddressBookParser {
         case DeleteTutorialCommand.COMMAND_WORD:
             return new DeleteTutorialCommandParser().parse(arguments);
 
+        case MarkQCommand.COMMAND_WORD:
+            return new MarkQCommandParser().parse(arguments);
+
+        case UnmarkQCommand.COMMAND_WORD:
+            return new UnmarkQCommandParser().parse(arguments);
+
         case MarkTutorialCommand.COMMAND_WORD:
             return new MarkTutorialCommandParser().parse(arguments);
+
+        case UnmarkTutorialCommand.COMMAND_WORD:
+            return new UnmarkTutorialCommandParser().parse(arguments);
 
         case AttendanceCommand.COMMAND_WORD:
             return new AttendanceCommandParser().parse(arguments);
 
         case AddResponseCommand.COMMAND_WORD:
             return new AddResponseCommandParser().parse(arguments);
+
+        case HelpStuCommand.COMMAND_WORD:
+            return new HelpStuCommandParser().parse(arguments);
+
+        case UnhelpStuCommand.COMMAND_WORD:
+            return new UnhelpStuCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

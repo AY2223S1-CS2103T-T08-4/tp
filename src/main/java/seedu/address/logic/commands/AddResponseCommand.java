@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MESSAGE_COUNT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.List;
@@ -19,11 +20,13 @@ public class AddResponseCommand extends Command {
 
     public static final String COMMAND_WORD = "addresponse";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": adds the number of messages a student sends. "
+            + ": edits response count of a student. "
             + "The student is identified by the index number used "
             + "in the last student listing.\n "
-            + "Example: " + COMMAND_WORD + "1 + m/ 7";
-    public static final String MESSAGE_ADDRESPONSE_SUCCESS = "Added response count from Student";
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MESSAGE_COUNT + "7 ";
+    public static final String MESSAGE_ADDRESPONSE_SUCCESS = "Edited response count for Student ";
+    public static final String MESSAGE_MISSING_PREFIX = "Must include the prefix m/ and a number afterward"
+        + " for a valid addresponse command";
 
     private final Index index;
     private final Response response;
@@ -65,11 +68,11 @@ public class AddResponseCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = new Student(
                 studentToEdit.getName(), studentToEdit.getTelegram(), studentToEdit.getEmail(),
-                response, studentToEdit.getAttendance());
+                response, studentToEdit.getAttendance(), studentToEdit.getHelpTag());
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
-        return new CommandResult(MESSAGE_ADDRESPONSE_SUCCESS);
+        return new CommandResult(MESSAGE_ADDRESPONSE_SUCCESS + studentToEdit.getName().toString());
     }
 }

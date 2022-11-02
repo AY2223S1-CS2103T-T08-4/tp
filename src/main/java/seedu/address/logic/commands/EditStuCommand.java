@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
@@ -15,6 +16,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Attendance;
+import seedu.address.model.student.HelpTag;
 import seedu.address.model.student.Response;
 import seedu.address.model.student.StuEmail;
 import seedu.address.model.student.StuName;
@@ -34,27 +36,29 @@ public class EditStuCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_TELEGRAM + "TELEGRAM] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ATTENDANCE + "ATTENDANCE] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TELEGRAM + "@johndoe "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_ATTENDANCE + "2";
 
     public static final String MESSAGE_EDIT_STUDENT_SUCCESS = "Edited student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the student list.";
 
     private final Index index;
-    private final EditStuCommand.EditStudentDescriptor editStudentDescriptor;
+    private final EditStudentDescriptor editStudentDescriptor;
 
     /**
      * @param index of the student in the filtered student list to edit
      * @param editStudentDescriptor details to edit the student with
      */
-    public EditStuCommand(Index index, EditStuCommand.EditStudentDescriptor editStudentDescriptor) {
+    public EditStuCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
         requireNonNull(editStudentDescriptor);
 
         this.index = index;
-        this.editStudentDescriptor = new EditStuCommand.EditStudentDescriptor(editStudentDescriptor);
+        this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
     }
 
     @Override
@@ -82,8 +86,7 @@ public class EditStuCommand extends Command {
      * Creates and returns a {@code Student} with the details of {@code studentToEdit}
      * edited with {@code editStudentDescriptor}.
      */
-    private static Student createEditedStudent(Student studentToEdit,
-                                               EditStuCommand.EditStudentDescriptor editStudentDescriptor) {
+    private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
         StuName updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
@@ -91,8 +94,9 @@ public class EditStuCommand extends Command {
         StuEmail updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Response response = studentToEdit.getResponse();
         Attendance attendance = editStudentDescriptor.getAttendance().orElse(studentToEdit.getAttendance());
+        HelpTag helpTag = studentToEdit.getHelpTag();
 
-        return new Student(updatedName, updatedTelegram, updatedEmail, response, attendance);
+        return new Student(updatedName, updatedTelegram, updatedEmail, response, attendance, helpTag);
     }
 
     @Override
@@ -129,7 +133,7 @@ public class EditStuCommand extends Command {
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditStudentDescriptor(EditStuCommand.EditStudentDescriptor toCopy) {
+        public EditStudentDescriptor(EditStudentDescriptor toCopy) {
             setName(toCopy.name);
             setTelegram(toCopy.telegram);
             setEmail(toCopy.email);
@@ -183,12 +187,12 @@ public class EditStuCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditStuCommand.EditStudentDescriptor)) {
+            if (!(other instanceof EditStudentDescriptor)) {
                 return false;
             }
 
             // state check
-            EditStuCommand.EditStudentDescriptor e = (EditStuCommand.EditStudentDescriptor) other;
+            EditStudentDescriptor e = (EditStudentDescriptor) other;
 
             return getName().equals(e.getName())
                     && getTelegram().equals(e.getTelegram())

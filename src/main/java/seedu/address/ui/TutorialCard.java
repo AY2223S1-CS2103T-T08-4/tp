@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -32,7 +33,9 @@ public class TutorialCard extends UiPart<Region> {
     @FXML
     private Label time;
     @FXML
-    private Label status;
+    private Label date;
+    @FXML
+    private CheckBox status;
     @FXML
     private Label id;
 
@@ -46,8 +49,10 @@ public class TutorialCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         content.setText(tutorial.getContent().content);
         group.setText(tutorial.getGroup().group);
-        time.setText(tutorial.getTime().time);
-        status.setText(String.valueOf(tutorial.getStatus()));
+        time.setText(tutorial.getTimeOrDateStr("time"));
+        date.setText(tutorial.getTimeOrDateStr("date"));
+        status.setText("");
+        status.setSelected(tutorial.getStatus());
     }
 
     @Override
