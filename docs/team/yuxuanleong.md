@@ -5,7 +5,9 @@ title: Leong Yu Xuan's Project Portfolio Page
 
 ### Project: SETA
 
-SETA is a desktop tutorial management application used to help CS2103T TA's manage their tutorials and students. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+SETA is a desktop tutorial management application used to help CS2103T TA's to track their students’ and tutorials’
+details, and questions asked by students. The user interacts with it using a CLI, and it has a GUI created with JavaFX.
+It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
@@ -13,24 +15,27 @@ Given below are my contributions to the project.
   * What it does: Allows the user to delete a student.
   * Justification: This feature improves the product significantly because a user remove students after the semester is over.
   * Highlights: This enhancement requires me to make changes to existing classes.
-  * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
 * **New Feature**: Added the ability to add a student's attendance.
   * What it does: Allows the user to add the student's attendance.
   * Justification: This feature improves the product significantly because a user can keep track of student's attendance for grading purposes.
   * Highlights: This enhancement requires me to make changes to existing classes.
-  * Credits:
 
 * **New Feature**: Added the ability to add a help tag to a student.
   * What it does: Allows the user to indicate which student needs more help.
   * Justification: This feature improves the product significantly because a user can see at one glance which students need more attention.
   * Highlights: This enhancement requires me to make changes to existing classes.
-  * Credits:
 
+* **New Feature**: Added the ability to remove a help tag to a student.
+  * What it does: Allows the user to indicate which student, that needed help, does not need help anymore.
+  * Justification: This feature improves the product significantly because a user can remove a help tag from a student without the need to
+    delete the student and add the student back with the same details but just without the help tag.
+  * Highlights: This enhancement requires me to make changes to existing classes.
 * **Code contributed**: [RepoSense link]()
 
 * **Project management**:
-  * to be added
+  * Released v1.2, v1.3.1 on Github
+  * Created issues and tagged them for easy reference for my teammates
 
 * **Enhancements to existing features**:
   * to be added
@@ -46,5 +51,3 @@ Given below are my contributions to the project.
 
 * **Tools**:
   * to be added.
-
-

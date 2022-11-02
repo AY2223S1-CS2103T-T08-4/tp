@@ -14,24 +14,26 @@ note down questions more effectively than traditional GUI apps.
     * **[Quick Start](#quick-start)**
     * **[Features](#features)**
       * **Students**
-          * Adding a student: [`addstu`](#adding-a-student--addstu)
+          * Adding a student: [`addstu`](#adding-a-student-addstu)
           * Editing a student: [`editstu`](#editing-a-student-editstu)
-          * Adding student's attendance: [`attendance`](#adding-students-attendance--attendance)
+          * Adding student's attendance: [`attendance`](#adding-students-attendance-attendance)
           * Adding student’s response: [`addresponse`](#adding-students-response-addresponse)
           * Adding help tag to a student: [`helpstu`](#adding-help-tag-helpstu)
+          * Removing help tag from a student: [`unhelpstu`](#removing-help-tag-unhelpstu)
           * Deleting a student: [`deletestu`](#deleting-a-student-deletestu)
           * Finding a student: [`findstu`](#finding-a-student-findstu)
           * Listing all students: [`liststu`](#listing-all-students-liststu)
       * **Questions**
           * Adding a question: [`addq`](#adding-a-question--addq)
-          * Marking a question: [`markq`](#marking-a-question--markq)
-          * Unmarking a question: [`unmarkq`](#unmarking-a-question--unmarkq)
-          * Deleting a question: [`deleteq`](#deleting-a-question--deleteq)
+          * Marking a question: [`markq`](#marking-a-question-markq)
+          * Unmarking a question: [`unmarkq`](#unmarking-a-question-unmarkq)
+          * Deleting a question: [`deleteq`](#deleting-a-question-deleteq)
       * **Tutorials**
-          * Adding a tutorial: [`addtut`](#adding-a-tutorial--addtut)
-          * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial--deletetut)
+          * Adding a tutorial: [`addtut`](#adding-a-tutorial-addtut)
+          * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial-deletetut)
           * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
-      * **Exiting the program**: [`exit`](#exiting-the-program--exit)
+          * **Clear**: [`clear`](#clearing-all-entries-clear)
+      * **Exiting the program**: [`exit`](#exiting-the-program-exit)
     * **[FAQ](#faq)**
     * **[Command Summary](#command-summary)**
 
@@ -91,7 +93,7 @@ Some example commands you can try:
 
 ### <ins>Students</ins>
 
-### Adding a student : `addstu`
+### Adding a student: `addstu`
 
 Adds a student to the student list.
 
@@ -124,7 +126,7 @@ Examples:
 * `editstu 2 a/5` Edits the attendance number of the 2nd student to 5.
 
 
-### Adding student's attendance : `attendance`
+### Adding student's attendance: `attendance`
 
 Increases student's attendance by 1.
 
@@ -171,6 +173,20 @@ Example:
 
 * `helpstu 2`
 
+### Removing help tag: `unhelpstu`
+
+Removes help tag from an existing student.
+
+Format: `unhelpstu INDEX`
+
+* Removes help tag to the student at the specified INDEX.
+* The index refers to the index number shown in the displayed student list.
+* The index must be a positive integer 1, 2. 3, ….
+
+Example:
+
+* `unhelpstu 2`
+* 
 ### Deleting a student: `deletestu`
 
 Removes a specific student.
@@ -211,7 +227,7 @@ Example:
 
 ### <ins>Questions</ins>
 
-### Adding a question : `addq`
+### Adding a question  `addq`
 
 Adds a question to the question list.
 
@@ -221,7 +237,7 @@ Example:
 
 * `addq what is the difference between self-invocation and call-backs for sequence diagrams?`
 
-### Marking a question : `markq`
+### Marking a question: `markq`
 
 Marks a question as important.
 
@@ -238,7 +254,7 @@ Example:
 * `markq 1` marks the first question in the question list as important
 
 
-### Unmarking a question : `unmarkq`
+### Unmarking a question: `unmarkq`
 
 Marks a question as unimportant. (If the question was previously or mistakenly marked as important)
 
@@ -255,7 +271,7 @@ Example:
 * `unmarkq 1` marks the first question in the question list as unimportant
 
 
-### Deleting a question : `deleteq`
+### Deleting a question: `deleteq`
 
 Deletes a question in the question list.
 
@@ -271,7 +287,7 @@ Example:
 
 ### <ins>Tutorials</ins>
 
-### Adding a tutorial : `addtut`
+### Adding a tutorial: `addtut`
 
 Adds a tutorial to the tutorial list.
 
@@ -285,7 +301,7 @@ Example:
 * `addtut g/T08 c/UML diagrams t/2022-10-01 1400`
 
 
-### Deleting a tutorial : `deletetut`
+### Deleting a tutorial: `deletetut`
 
 Deletes a tutorial in the tutorial list.
 
@@ -329,8 +345,13 @@ Example:
 
 * `unmarktut 1` marks the first tutorial from the tutorial list as undone.
 
+### Clearing all entries: `clear`
 
-### Exiting the program : `exit`
+Clears all entries.
+
+Format: `clear`
+
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -377,5 +398,6 @@ the data of your previous SETA home folder.
 | **Find**       | `findstu`                                  |  
 | **List**       | `liststu`                                  |  
 | **Mark**       | `markq`, `unmarkq`, `marktut`, `unmarktut` |
-| **Tag**        | `helpstu`                                  |
+| **Tag**        | `helpstu`, `unhelpstu`                     |
+| **Clear**      | `clear`                                    |
 | **Exit**       | `exit`                                     |
