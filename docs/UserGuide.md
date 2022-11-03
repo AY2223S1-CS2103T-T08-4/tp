@@ -43,15 +43,16 @@ tutorials and note down questions more effectively than traditional GUI apps.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `SETA.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-4/tp/releases).
+2. Download the latest `SETA.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your SETA.
+3. Copy the file to the folder you want to use as the _home folder_ for your SETA.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
-   contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app
+   contains some sample data.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`liststu`** and pressing Enter will
+<img src="images/Ui.png" alt="Ui" width="1100">
+
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`liststu`** and pressing Enter will
    list all the students in the 'Student' column.<br>
 
 Some example commands you can try:
@@ -108,6 +109,8 @@ Examples:
 * `addstu n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com`
 * `addstu n/Mary Tan Xiao Li h/@marytxl e/marytxl@example.com`
 
+<img src="images/ug-screenshots/addstu.png" alt="addstu n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com" width="1100">
+
 ### Editing a student: `editstu`
 
 Edits an existing student in the student list.
@@ -127,6 +130,7 @@ Examples:
 * `editstu 3 n/Mary Lee Jing Yi` Edits the name of the 3rd student to Mary Lee Jing Yi.
 * `editstu 2 a/5` Edits the attendance number of the 2nd student to 5.
 
+<img src="images/ug-screenshots/editstu.png" alt="editstu 1 h/@johnlim e/jljj@example.com" width="1100">
 
 ### Adding student's attendance: `attendance`
 
@@ -141,6 +145,8 @@ Format: `attendance INDEX`
 Example:
 
 * `attendance 1`
+
+<img src="images/ug-screenshots/attendance.png" alt="attendance 1" width="1100">
 
 ### Adding student's response: `addresponse`
 
@@ -161,6 +167,8 @@ Example:
 
 * `addresponse 1 m/7`
 
+<img src="images/ug-screenshots/addresponse.png" alt="addresponse 1 m/7" width="1100">
+
 ### Adding help tag: `helpstu`
 
 Adds a help tag to an existing student.
@@ -173,7 +181,9 @@ Format: `helpstu INDEX`
 
 Example:
 
-* `helpstu 2`
+* `helpstu 1`
+
+<img src="images/ug-screenshots/helpstu.png" alt="helpstu 1" width="1100">
 
 ### Removing help tag: `unhelpstu`
 
@@ -187,7 +197,9 @@ Format: `unhelpstu INDEX`
 
 Example:
 
-* `unhelpstu 2`
+* `unhelpstu 1`
+
+<img src="images/ug-screenshots/unhelpstu.png" alt="unhelpstu 1" width="1100">
 
 ### Deleting a student: `deletestu`
 
@@ -201,7 +213,9 @@ Format: `deletestu INDEX`
 
 Example:
 
-* `deletestu 2`
+* `deletestu 1`
+
+<img src="images/ug-screenshots/deletestu.png" alt="deletestu 1" width="1100">
 
 ### Finding a student: `findstu`
 
@@ -214,8 +228,10 @@ Format: `findstu KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 
-* `findstu bob`
+* `findstu jun`
 * `findstu john mary`
+
+<img src="images/ug-screenshots/findstu.png" alt="findstu jun" width="1100">
 
 ### Listing all students: `liststu`
 
@@ -226,6 +242,8 @@ Format: `liststu`
 Example:
 
 * `liststu`
+
+<img src="images/ug-screenshots/liststu.png" alt="liststu 1" width="1100">
 
 ### <ins>Questions</ins>
 
@@ -238,6 +256,8 @@ Format: `addq QUESTION_DESCRIPTION`
 Example:
 
 * `addq what is the difference between self-invocation and call-backs for sequence diagrams?`
+
+<img src="images/ug-screenshots/addq.png" alt="addq what is the difference between self-invocation and call-backs for sequence diagrams?" width="1100">
 
 ### Marking a question: `markq`
 
@@ -255,6 +275,7 @@ Example:
 
 * `markq 1` marks the first question in the question list as important
 
+<img src="images/ug-screenshots/markq.png" alt="markq 1" width="1100">
 
 ### Unmarking a question: `unmarkq`
 
@@ -272,6 +293,7 @@ Example:
 
 * `unmarkq 1` marks the first question in the question list as unimportant
 
+<img src="images/ug-screenshots/unmarkq.png" alt="unmarkq 1" width="1100">
 
 ### Deleting a question: `deleteq`
 
@@ -288,6 +310,8 @@ Example:
 
 * `deleteq 1` deletes the first question from the question list
 
+<img src="images/ug-screenshots/deleteq.png" alt="deleteq 1" width="1100">
+
 ### <ins>Tutorials</ins>
 
 ### Adding a tutorial: `addtut`
@@ -303,6 +327,7 @@ Example:
 
 * `addtut g/T08 c/UML diagrams t/2022-10-01 1400`
 
+<img src="images/ug-screenshots/addtut.png" alt="addtut g/T08 c/UML diagrams t/2022-10-01 1400" width="1100">
 
 ### Deleting a tutorial: `deletetut`
 
@@ -319,6 +344,7 @@ Example:
 
 * `deletetut 1`deletes the first tutorial from the tutorial list
 
+<img src="images/ug-screenshots/deletetut.png" alt="deletetut 1" width="1100">
 
 ### Marking a tutorial: `marktut`
 
@@ -334,6 +360,8 @@ Example:
 
 * `marktut 1` marks the first tutorial from the tutorial list as done.
 
+<img src="images/ug-screenshots/marktut.png" alt="marktut 1" width="1100">
+
 ### Unmarking a tutorial: `unmarktut`
 
 Marks content in the tutorial as undone.
@@ -348,11 +376,15 @@ Example:
 
 * `unmarktut 1` marks the first tutorial from the tutorial list as undone.
 
+<img src="images/ug-screenshots/unmarktut.png" alt="unmarktut 1" width="1100">
+
 ### Clearing all entries: `clear`
 
 Clears all entries.
 
 Format: `clear`
+
+<img src="images/ug-screenshots/clear.png" alt="clear" width="1100">
 
 ### Exiting the program: `exit`
 
