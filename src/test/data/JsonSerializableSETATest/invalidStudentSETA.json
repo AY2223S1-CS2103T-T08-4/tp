@@ -1,0 +1,10 @@
+{
+  "students": [ {
+    "name" : "Alex Yeoh",
+    "telegram" : "@AlexYeoh",
+    "email" : "alexexamplecom",
+    "response" : "2",
+    "attendance" : "2",
+    "toHelp" : "true"
+  } ]
+}
