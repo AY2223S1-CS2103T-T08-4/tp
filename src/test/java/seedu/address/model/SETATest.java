@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalSETA;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -19,25 +19,25 @@ import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.StudentBuilder;
 
-public class AddressBookTest {
+public class SETATest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final SETA SETA = new SETA();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getStudentList());
+        assertEquals(Collections.emptyList(), SETA.getStudentList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> SETA.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlySETA_replacesData() {
+        SETA newData = getTypicalSETA();
+        SETA.resetData(newData);
+        assertEquals(newData, SETA);
     }
 
     /*@Test
@@ -48,54 +48,54 @@ public class AddressBookTest {
                 .withResponse("2")
                 .withAttendance("1").build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newStudents);
+        SETAStub newData = new SETAStub(newStudents);
 
-        assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> seta.resetData(newData));
     }*/
 
     @Test
     public void hasStudent_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasStudent(null));
+        assertThrows(NullPointerException.class, () -> SETA.hasStudent(null));
     }
 
     @Test
-    public void hasStudent_studentNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasStudent(ALICE));
+    public void hasStudent_studentNotInSETA_returnsFalse() {
+        assertFalse(SETA.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_studentInAddressBook_returnsTrue() {
-        addressBook.addStudent(ALICE);
-        assertTrue(addressBook.hasStudent(ALICE));
+    public void hasStudent_studentInSETA_returnsTrue() {
+        SETA.addStudent(ALICE);
+        assertTrue(SETA.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addStudent(ALICE);
+    public void hasStudent_studentWithSameIdentityFieldsInSETA_returnsTrue() {
+        SETA.addStudent(ALICE);
         Student editedAlice = new StudentBuilder().withName("Alice Pauline")
                 .withTelegram("@AlicePauline").withEmail("alice@example.com")
                 .withResponse("2")
                 .withAttendance("1").build();
-        assertTrue(addressBook.hasStudent(editedAlice));
+        assertTrue(SETA.hasStudent(editedAlice));
     }
 
     @Test
     public void getStudentList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getStudentList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> SETA.getStudentList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlySETA whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class SETAStub implements ReadOnlySETA {
         private final ObservableList<Tutorial> tutorials = FXCollections.observableArrayList();
         private final ObservableList<Student> students = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Student> students) {
+        SETAStub(Collection<Student> students) {
             this.students.setAll(students);
         }
 
-        AddressBookStub(Collection<Student> students, Collection<Tutorial> tutorials) {
+        SETAStub(Collection<Student> students, Collection<Tutorial> tutorials) {
             this.students.setAll(students);
             this.tutorials.setAll(tutorials);
         }

@@ -115,7 +115,7 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `SETAParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddStuCommand`) which
    is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
@@ -136,9 +136,9 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a
+* When called upon to parse a user command, the `SETAParser` class creates an `XYZCommandParser` (`XYZ` is a
   placeholder for the specific command name e.g., `AddStuCommandParser`) which uses the other classes shown above to
-  parse the user command and create a `XYZCommand` object (e.g., `AddStuCommand`) which the `AddressBookParser` returns
+  parse the user command and create a `XYZCommand` object (e.g., `AddStuCommand`) which the `SETAParser` returns
   back as a `Command` object.
 
 * All `XYZCommandParser` classes (e.g., `AddStuCommandParser`, `DeleteStuCommandParser`, ...) inherit from the `Parser`
@@ -178,7 +178,7 @@ The `Storage` component,
 
 * can save both address book data and user preference data in json format, and read them back into corresponding
   objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+* inherits from both `SETAStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
   the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
@@ -200,18 +200,18 @@ the student will be added on the Graphical User Interface.
 
 #### Implementation
 
-The Add Student mechanism is facilitated by `AddressBook`. It implements the following operations:
+The Add Student mechanism is facilitated by `SETA`. It implements the following operations:
 
-* `AddressBook#hasStudent(Student s)` - Returns true if a student with the same identity as Student s exists in the
+* `SETA#hasStudent(Student s)` - Returns true if a student with the same identity as Student s exists in the
   address book.
-* `AddressBook#addStudent(Student student)` - Adds a student to the address book.
+* `SETA#addStudent(Student student)` - Adds a student to the address book.
 
 These operations are exposed in the Model interface as `Model#hasStudent(Student student)`
 and `Model#addStudent(Student student)` respectively.
 
 Given below is an example usage scenario and how the `addstu` mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `AddressBook` will be initialised with the initial
+Step 1. The user launches the application for the first time. The `SETA` will be initialised with the initial
 json data stored.
 
 Step 2. The user execute `addstu n/John Doe...` command to add student called John Doe to the address book. The `addstu`
@@ -309,33 +309,33 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Implementation
 
-The proposed add question mechanism is facilitated by `AddressBook`. It implements the following operations:
+The proposed add question mechanism is facilitated by `SETA`. It implements the following operations:
 
-* `AddressBook#hasQuestion(Question question)` - Returns true if a question with the same identity as Question question
+* `SETA#hasQuestion(Question question)` - Returns true if a question with the same identity as Question question
   exists in the address book.
 
-* `AddressBook#addQuestion(Question question)` - Adds a question to the question list in the address book.
+* `SETA#addQuestion(Question question)` - Adds a question to the question list in the address book.
 
 These operations are exposed in the Model interface as `Model#hasQuestion(Question question)`
 and `Model#addQuestion(Question question)` respectively.
 
 Given below is an example usage scenario and how the addq mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `AddressBook` will be initialised with the initial
+Step 1. The user launches the application for the first time. The `SETA` will be initialised with the initial
 address book state.
 
 Step 2. The user execute `addq Why?` command to add question called "Why?" to the question list ('UniqueQuestionList').
-The `addq` command calls `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, causing the modified address book
-after the `addq Why?` command executes to be saved in the `addressBook`.
+The `addq` command calls `Model#setSETA(ReadOnlySETA seta)`, causing the modified address book
+after the `addq Why?` command executes to be saved in the `seta`.
 
 **Note:**
 
 1. If a command fails its execution
-   due to incorrect command format, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`,
-   so the address book state will not be saved into `addressBook`. User will retype their command.
-2. If upon invoking `AddressBook#hasQuestion`
-   method and return value is `true`, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`,
-   so 'UniqueQuestionList' and `addressBook` will not be updated.
+   due to incorrect command format, it will not call `Model#setSETA(ReadOnlySETA seta)`,
+   so the address book state will not be saved into `seta`. User will retype their command.
+2. If upon invoking `SETA#hasQuestion`
+   method and return value is `true`, it will not call `Model#setSETA(ReadOnlySETA seta)`,
+   so 'UniqueQuestionList' and `seta` will not be updated.
 3. Questions added not case-sensitive. For
    example, if a question in the `question list` is "why?", another question called "WHY?" can be added. Duplicates are
    not allowed. E.g. adding another question called "why?".
@@ -896,4 +896,3 @@ exploratory* testing.
     4. Other incorrect marktut commands to try: `marktut`, `marktut x` (where x is larger than list size)
        , `marktut -1` <br>
        Expected: Similar to previous
-

@@ -5,10 +5,10 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlySETA" as ReadOnlySETA
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class SETA
 Class ModelManager
 Class UserPrefs
 
@@ -38,19 +38,19 @@ Class Status
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+SETA .up.|> ReadOnlySETA
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlySETA
+ModelManager -left-> "1" SETA
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 UniqueStudentList -[hidden]up-> ModelManager
 UniqueQuestionList -[hidden]up-> ModelManager
 UniqueTutorialList -[hidden]up-> ModelManager
 
-AddressBook *--> "1" UniqueStudentList
+SETA *--> "1" UniqueStudentList
 UniqueStudentList --> "~* all" Student
 Student *--> Name
 Student *--> Telegram
@@ -59,12 +59,12 @@ Student *--> Response
 Student *--> Attendance
 Student *--> HelpTag
 
-AddressBook *--> "1" UniqueQuestionList
+SETA *--> "1" UniqueQuestionList
 UniqueQuestionList --> "~* all" Question
 Question *--> Description
 Question *--> ImportantTag
 
-AddressBook *--> "1" UniqueTutorialList
+SETA *--> "1" UniqueTutorialList
 UniqueTutorialList --> "~* all" Tutorial
 Tutorial *--> Group
 Tutorial *--> Content

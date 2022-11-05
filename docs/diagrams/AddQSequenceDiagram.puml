@@ -3,22 +3,22 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser ADDRESSBOOKPARSER_COLOR
+participant ":SETAParser" as SETAParser ADDRESSBOOKPARSER_COLOR
 participant ":AddQCommandParser" as AddQCommandParser ADDQCOMMANDPARSER_COLOR
 participant "a: AddQCommand" as AddQCommand ADDQCOMMAND_COLOR
 box end
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":AddressBook" as AddressBook ADDRESSBOOK_COLOR
+participant ":SETA" as SETA ADDRESSBOOK_COLOR
 
 [-> LogicManager : execute("addq Why?")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("addq Why?")
-activate AddressBookParser
+LogicManager -> SETAParser : parseCommand("addq Why?")
+activate SETAParser
 
-AddressBookParser -> AddQCommandParser : parse(" Why?")
+SETAParser -> AddQCommandParser : parse(" Why?")
 activate AddQCommandParser
 
 Create AddQCommand
@@ -28,11 +28,11 @@ activate AddQCommand
 AddQCommand --> AddQCommandParser : a
 deactivate AddQCommand
 
-AddQCommandParser --> AddressBookParser : a
+AddQCommandParser --> SETAParser : a
 deactivate AddQCommandParser
 
-AddressBookParser --> LogicManager : a
-deactivate AddressBookParser
+SETAParser --> LogicManager : a
+deactivate SETAParser
 
 LogicManager -> AddQCommand : execute(model)
 activate AddQCommand
@@ -40,12 +40,12 @@ activate AddQCommand
 AddQCommand -> Model : addQuestion(toAdd)
 activate Model
 
-Model -> AddressBook : addQuestion(toAdd)
-activate AddressBook
+Model -> SETA : addQuestion(toAdd)
+activate SETA
 
-AddressBook -> AddressBook : resetData(ReadOnlyAddressBook newData)
-AddressBook --> Model
-deactivate AddressBook
+SETA -> SETA : resetData(ReadOnlySETA newData)
+SETA --> Model
+deactivate SETA
 
 
 Model --> AddQCommand

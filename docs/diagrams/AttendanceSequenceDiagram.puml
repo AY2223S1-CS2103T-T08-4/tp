@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SETAParser" as SETAParser LOGIC_COLOR
 participant ":AttendanceCommandParser" as AttendanceCommandParser LOGIC_COLOR
 participant "a:AttendanceCommand" as AttendanceCommand LOGIC_COLOR
 end box
@@ -11,17 +11,17 @@ end box
 [-> LogicManager : execute("attendance 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("attendance 1")
-activate AddressBookParser
+LogicManager -> SETAParser : parseCommand("attendance 1")
+activate SETAParser
 
 create AttendanceCommandParser
-AddressBookParser -> AttendanceCommandParser
+SETAParser -> AttendanceCommandParser
 activate AttendanceCommandParser
 
-AttendanceCommandParser --> AddressBookParser
+AttendanceCommandParser --> SETAParser
 deactivate AttendanceCommandParser
 
-AddressBookParser -> AttendanceCommandParser : parse("1")
+SETAParser -> AttendanceCommandParser : parse("1")
 activate AttendanceCommandParser
 
 create AttendanceCommand
@@ -31,14 +31,14 @@ activate AttendanceCommand
 AttendanceCommand --> AttendanceCommandParser : a
 deactivate AttendanceCommand
 
-AttendanceCommandParser --> AddressBookParser : a
+AttendanceCommandParser --> SETAParser : a
 deactivate AttendanceCommandParser
 
-AttendanceCommandParser -[hidden]-> AddressBookParser
+AttendanceCommandParser -[hidden]-> SETAParser
 destroy AttendanceCommandParser
 
-AddressBookParser --> LogicManager : a
-deactivate AddressBookParser
+SETAParser --> LogicManager : a
+deactivate SETAParser
 
 ref over LogicManager : execute attendance command
 

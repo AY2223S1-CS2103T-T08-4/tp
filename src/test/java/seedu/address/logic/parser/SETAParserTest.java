@@ -23,9 +23,9 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.StuNameContainsKeywordsPredicate;
 
 
-public class AddressBookParserTest {
+public class SETAParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final SETAParser parser = new SETAParser();
 
     @Test
     public void parseCommand_clear() throws Exception {

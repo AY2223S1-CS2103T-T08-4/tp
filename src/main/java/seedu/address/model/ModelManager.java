@@ -21,29 +21,29 @@ import seedu.address.model.tutorial.Tutorial;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final SETA SETA;
     private final UserPrefs userPrefs;
     private final FilteredList<Question> filteredQuestions;
     private final FilteredList<Tutorial> filteredTutorials;
     private final FilteredList<Student> filteredStudents;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given seta and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlySETA seta, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(seta, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + seta + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.SETA = new SETA(seta);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredQuestions = new FilteredList<>(this.addressBook.getQuestionList());
-        filteredTutorials = new FilteredList<>(this.addressBook.getTutorialList());
-        filteredStudents = new FilteredList<>(this.addressBook.getStudentList());
+        filteredQuestions = new FilteredList<>(this.SETA.getQuestionList());
+        filteredTutorials = new FilteredList<>(this.SETA.getTutorialList());
+        filteredStudents = new FilteredList<>(this.SETA.getStudentList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new SETA(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -71,26 +71,26 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getSETAFilePath() {
+        return userPrefs.getSETAFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setSETAFilePath(Path setaFilePath) {
+        requireNonNull(setaFilePath);
+        userPrefs.setSETAFilePath(setaFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== SETA ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setSETA(ReadOnlySETA seta) {
+        this.SETA.resetData(seta);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlySETA getSETA() {
+        return SETA;
     }
 
     //=========== Student ================================================================================
@@ -98,17 +98,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return addressBook.hasStudent(student);
+        return SETA.hasStudent(student);
     }
 
     @Override
     public void deleteStudent(Student target) {
-        addressBook.removeStudent(target);
+        SETA.removeStudent(target);
     }
 
     @Override
     public void addStudent(Student student) {
-        addressBook.addStudent(student);
+        SETA.addStudent(student);
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
@@ -116,7 +116,7 @@ public class ModelManager implements Model {
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
 
-        addressBook.setStudent(target, editedStudent);
+        SETA.setStudent(target, editedStudent);
     }
 
 
@@ -125,17 +125,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasQuestion(Question question) {
         requireNonNull(question);
-        return addressBook.hasQuestion(question);
+        return SETA.hasQuestion(question);
     }
 
     @Override
     public void deleteQuestion(Question target) {
-        addressBook.removeQuestion(target);
+        SETA.removeQuestion(target);
     }
 
     @Override
     public void addQuestion(Question question) {
-        addressBook.addQuestion(question);
+        SETA.addQuestion(question);
         updateFilteredQuestionList(PREDICATE_SHOW_ALL_QUESTIONS);
     }
 
@@ -143,7 +143,7 @@ public class ModelManager implements Model {
     public void setQuestion(Question target, Question editedQuestion) {
         requireAllNonNull(target, editedQuestion);
 
-        addressBook.setQuestion(target, editedQuestion);
+        SETA.setQuestion(target, editedQuestion);
     }
 
     //=========== Tutorial ================================================================================
@@ -151,17 +151,17 @@ public class ModelManager implements Model {
     @Override
     public boolean hasTutorial(Tutorial tutorial) {
         requireNonNull(tutorial);
-        return addressBook.hasTutorial(tutorial);
+        return SETA.hasTutorial(tutorial);
     }
 
     @Override
     public void deleteTutorial(Tutorial target) {
-        addressBook.removeTutorial(target);
+        SETA.removeTutorial(target);
     }
 
     @Override
     public void addTutorial(Tutorial tutorial) {
-        addressBook.addTutorial(tutorial);
+        SETA.addTutorial(tutorial);
         updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
     }
 
@@ -169,7 +169,7 @@ public class ModelManager implements Model {
     public void setTutorial(Tutorial target, Tutorial editedTutorial) {
         requireAllNonNull(target, editedTutorial);
 
-        addressBook.setTutorial(target, editedTutorial);
+        SETA.setTutorial(target, editedTutorial);
     }
 
 
@@ -177,7 +177,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedSETA}
      */
     @Override
     public ObservableList<Student> getFilteredStudentList() {
@@ -194,7 +194,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Question} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedSETA}
      */
     @Override
     public ObservableList<Question> getFilteredQuestionList() {
@@ -209,7 +209,7 @@ public class ModelManager implements Model {
     //=========== Filtered Tutorial List Accessors =============================================================
     /**
      * Returns an unmodifiable view of the list of {@code Tutorial} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedSETA}
      */
     @Override
     public ObservableList<Tutorial> getFilteredTutorialList() {
@@ -236,7 +236,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return SETA.equals(other.SETA)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents)
                 && filteredQuestions.equals(other.filteredQuestions)

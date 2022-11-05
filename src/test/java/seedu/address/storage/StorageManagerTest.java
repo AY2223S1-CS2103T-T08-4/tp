@@ -21,9 +21,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonSETAStorage setaStorage = new JsonSETAStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(setaStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -45,22 +45,22 @@ public class StorageManagerTest {
     }
 
     //@Test
-    public void addressBookReadSave() throws Exception {
+    public void setaReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonSETAStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonSETAStorageTest} class.
          */
-        /*AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));*/
+        /*SETA original = getTypicalSETA();
+        storageManager.saveSETA(original);
+        ReadOnlySETA retrieved = storageManager.readSETA().get();
+        assertEquals(original, new SETA(retrieved));*/
     }
     // todo: figure out storage
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getSETAFilePath() {
+        assertNotNull(storageManager.getSETAFilePath());
     }
 
 }

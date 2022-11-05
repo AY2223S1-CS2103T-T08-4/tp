@@ -9,17 +9,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.SETA;
+import seedu.address.model.ReadOnlySETA;
 import seedu.address.model.question.Question;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable SETA that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+class JsonSerializableSETA {
 
     public static final String MESSAGE_DUPLICATE_QUESTION = "Questions list contains duplicate question(s).";
     public static final String MESSAGE_DUPLICATE_STUDENT = "Student list contains duplicate student(s).";
@@ -31,56 +31,56 @@ class JsonSerializableAddressBook {
 
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons questions tutorials.
+     * Constructs a {@code JsonSerializableSETA} with the given persons questions tutorials.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("students") List<JsonAdaptedStudent> students,
-                                       @JsonProperty("questions") List<JsonAdaptedQuestion> questions,
-                                       @JsonProperty("tutorials") List<JsonAdaptedTutorial> tutorials) {
+    public JsonSerializableSETA(@JsonProperty("students") List<JsonAdaptedStudent> students,
+                                @JsonProperty("questions") List<JsonAdaptedQuestion> questions,
+                                @JsonProperty("tutorials") List<JsonAdaptedTutorial> tutorials) {
         this.questions.addAll(questions);
         this.tutorials.addAll(tutorials);
         this.students.addAll(students);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlySETA} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableSETA}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableSETA(ReadOnlySETA source) {
         questions.addAll(source.getQuestionList().stream().map(JsonAdaptedQuestion::new).collect(Collectors.toList()));
         tutorials.addAll(source.getTutorialList().stream().map(JsonAdaptedTutorial::new).collect(Collectors.toList()));
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code SETA} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public SETA toModelType() throws IllegalValueException {
+        SETA SETA = new SETA();
         for (JsonAdaptedStudent jsonAdaptedStudent : students) {
             Student student = jsonAdaptedStudent.toModelType();
-            if (addressBook.hasStudent(student)) {
+            if (SETA.hasStudent(student)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STUDENT);
             }
-            addressBook.addStudent(student);
+            SETA.addStudent(student);
         }
         for (JsonAdaptedQuestion jsonAdaptedQuestion : questions) {
             Question question = jsonAdaptedQuestion.toModelType();
-            if (addressBook.hasQuestion(question)) {
+            if (SETA.hasQuestion(question)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_QUESTION);
             }
-            addressBook.addQuestion(question);
+            SETA.addQuestion(question);
         }
         for (JsonAdaptedTutorial jsonAdaptedTutorial : tutorials) {
             Tutorial tutorial = jsonAdaptedTutorial.toModelType();
-            if (addressBook.hasTutorial(tutorial)) {
+            if (SETA.hasTutorial(tutorial)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TUTORIAL);
             }
-            addressBook.addTutorial(tutorial);
+            SETA.addTutorial(tutorial);
         }
-        return addressBook;
+        return SETA;
     }
 }

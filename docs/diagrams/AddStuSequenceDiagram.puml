@@ -3,29 +3,29 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SETAParser" as SETAParser LOGIC_COLOR
 participant ":AddStuCommandParser" as AddStuCommandParser LOGIC_COLOR
 participant "a:AddStuCommand" as AddStuCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":SETA" as SETA MODEL_COLOR
 end box
 [-> LogicManager : execute(addstu n/John h/@johnlim e/john@gmail.com)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(addstu n/John h/@johnlim e/john@gmail.com)
-activate AddressBookParser
+LogicManager -> SETAParser : parseCommand(addstu n/John h/@johnlim e/john@gmail.com)
+activate SETAParser
 
 create AddStuCommandParser
-AddressBookParser -> AddStuCommandParser
+SETAParser -> AddStuCommandParser
 activate AddStuCommandParser
 
-AddStuCommandParser --> AddressBookParser
+AddStuCommandParser --> SETAParser
 deactivate AddStuCommandParser
 
-AddressBookParser -> AddStuCommandParser : parse("n/John h/@johnlim e/john@gmail.com")
+SETAParser -> AddStuCommandParser : parse("n/John h/@johnlim e/john@gmail.com")
 activate AddStuCommandParser
 
 create AddStuCommand
@@ -35,8 +35,8 @@ activate AddStuCommand
 AddStuCommand --> AddStuCommandParser
 deactivate AddStuCommand
 
-AddressBookParser --> LogicManager : a
-deactivate AddressBookParser
+SETAParser --> LogicManager : a
+deactivate SETAParser
 
 LogicManager -> AddStuCommand : execute()
 activate AddStuCommand
@@ -44,12 +44,12 @@ activate AddStuCommand
 AddStuCommand -> Model : addStudent(Student student)
 activate Model
 
-Model -> AddressBook : addStudent(Student s)
-activate AddressBook
+Model -> SETA : addStudent(Student s)
+activate SETA
 
-AddressBook -> AddressBook :resetData(ReadOnlyAddressBook newData)
-AddressBook --> Model :
-deactivate AddressBook
+SETA -> SETA :resetData(ReadOnlySETA newData)
+SETA --> Model :
+deactivate SETA
 
 Model --> AddStuCommand
 deactivate Model

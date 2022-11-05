@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SETAParser" as SETAParser LOGIC_COLOR
 participant ":AddResponseCommandParser" as AddResponseCommandParser LOGIC_COLOR
 participant "a:AddResponseCommand" as AddResponseCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
@@ -18,17 +18,17 @@ end box
 [-> LogicManager : execute("addresponse 1 m/7")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("addresponse 1 m/7")
-activate AddressBookParser
+LogicManager -> SETAParser : parseCommand("addresponse 1 m/7")
+activate SETAParser
 
 create AddResponseCommandParser
-AddressBookParser -> AddResponseCommandParser
+SETAParser -> AddResponseCommandParser
 activate AddResponseCommandParser
 
-AddResponseCommandParser --> AddressBookParser
+AddResponseCommandParser --> SETAParser
 deactivate AddResponseCommandParser
 
-AddressBookParser -> AddResponseCommandParser : parse("1 m/7")
+SETAParser -> AddResponseCommandParser : parse("1 m/7")
 activate AddResponseCommandParser
 
 create AddResponseCommand
@@ -38,14 +38,14 @@ activate AddResponseCommand
 AddResponseCommand --> AddResponseCommandParser : a
 deactivate AddResponseCommand
 
-AddResponseCommandParser --> AddressBookParser : a
+AddResponseCommandParser --> SETAParser : a
 deactivate AddResponseCommandParser
 
-AddResponseCommandParser -[hidden]-> AddressBookParser
+AddResponseCommandParser -[hidden]-> SETAParser
 destroy AddResponseCommandParser
 
-AddressBookParser --> LogicManager : a
-deactivate AddressBookParser
+SETAParser --> LogicManager : a
+deactivate SETAParser
 
 LogicManager -> AddResponseCommand : execute()
 activate AddResponseCommand

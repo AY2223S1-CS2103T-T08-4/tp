@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.SETA;
 import seedu.address.model.tutorial.Tutorial;
 
 
@@ -43,10 +43,10 @@ public class TypicalTutorials {
     private TypicalTutorials() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical tutorials.
+     * Returns an {@code SETA} with all the typical tutorials.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static SETA getTypicalSETA() {
+        SETA ab = new SETA();
         for (Tutorial tutorial : getTypicalTutorials()) {
             ab.addTutorial(tutorial);
         }

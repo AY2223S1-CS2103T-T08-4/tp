@@ -1,7 +1,7 @@
 package seedu.address.model.util;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.SETA;
+import seedu.address.model.ReadOnlySETA;
 import seedu.address.model.question.Description;
 import seedu.address.model.question.ImportantTag;
 import seedu.address.model.question.Question;
@@ -18,7 +18,7 @@ import seedu.address.model.tutorial.Time;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code SETA} with sample data.
  */
 public class SampleDataUtil {
     public static Student[] getSampleStudents() {
@@ -53,8 +53,8 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlySETA getSampleSETA() {
+        SETA sampleAb = new SETA();
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
         }

@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalSETA;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ import seedu.address.model.student.Student;
  */
 public class AddResponseCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSETA(), new UserPrefs());
     private Response dummyResponse = new Response("7");
 
     @Test
@@ -39,7 +39,7 @@ public class AddResponseCommandTest {
         String expectedMessage = String.format(addResponseCommand.MESSAGE_ADDRESPONSE_SUCCESS
                 + studentToAddResponse.getName().toString());
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSETA(), new UserPrefs());
         expectedModel.setStudent(studentToAddResponse, editedStudent);
 
         assertCommandSuccess(addResponseCommand, model, expectedMessage, expectedModel);

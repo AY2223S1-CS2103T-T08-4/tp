@@ -8,7 +8,7 @@ import seedu.address.model.tutorial.Tutorial;
 /**
  * Unmodifiable view of an address book
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlySETA {
 
     /**
      * Returns an unmodifiable view of the students list.

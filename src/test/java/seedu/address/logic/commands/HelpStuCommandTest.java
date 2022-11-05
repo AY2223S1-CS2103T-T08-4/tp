@@ -5,13 +5,13 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.address.logic.commands.HelpStuCommand.MESSAGE_HELP_STU_SUCCESS;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
-import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalStudents.getTypicalSETA;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.model.AddressBook;
+import seedu.address.model.SETA;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -20,7 +20,7 @@ import seedu.address.testutil.StudentBuilder;
 
 public class HelpStuCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSETA(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -31,7 +31,7 @@ public class HelpStuCommandTest {
         HelpStuCommand helpStuCommand = new HelpStuCommand(INDEX_FIRST_STUDENT);
 
         String expectedMessage = String.format(MESSAGE_HELP_STU_SUCCESS, editedStudent);
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSETA(), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         assertCommandSuccess(helpStuCommand, model, expectedMessage, expectedModel);
@@ -55,7 +55,7 @@ public class HelpStuCommandTest {
 
         String expectedMessage = String.format(MESSAGE_HELP_STU_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new SETA(model.getSETA()), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
 
         assertCommandSuccess(helpStuCommand, model, expectedMessage, expectedModel);

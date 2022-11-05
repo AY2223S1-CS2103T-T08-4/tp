@@ -43,20 +43,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getSETAFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setSETAFilePath(Path setaFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code seta}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setSETA(ReadOnlySETA seta);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the SETA */
+    ReadOnlySETA getSETA();
 
 
     //======= Students =================================================================================================

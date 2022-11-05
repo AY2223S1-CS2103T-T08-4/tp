@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.SETA;
 import seedu.address.model.student.Student;
 
 /**
@@ -71,10 +71,10 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical students.
+     * Returns an {@code SETA} with all the typical students.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static SETA getTypicalSETA() {
+        SETA ab = new SETA();
         for (Student student : getTypicalStudents()) {
             ab.addStudent(student);
         }

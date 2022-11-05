@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TUTORIAL;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TUTORIAL;
-import static seedu.address.testutil.TypicalTutorials.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTutorials.getTypicalSETA;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ import seedu.address.model.tutorial.Tutorial;
  * {@code UnmarkTutorialCommand}.
  */
 public class UnmarkTutorialCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalSETA(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +33,7 @@ public class UnmarkTutorialCommandTest {
 
         String expectedMessage = String.format(unmarkTutorialCommand.MESSAGE_UNMARKTUT_SUCCESS, editedTutorial);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getSETA(), new UserPrefs());
         expectedModel.setTutorial(tutorialToUnmark, editedTutorial);
 
         assertCommandSuccess(unmarkTutorialCommand, model, expectedMessage, expectedModel);
